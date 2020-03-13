@@ -65,14 +65,6 @@ class ThingsBoardAuth:
             params,
         )
     
-    def allowed_permissions_user(self, params: dict):
-        permissions_user_url = f"{self.URL}/api/permissions/allowedPermissions"
-
-        response = self.session.post(
-            permissions_user_url,
-            params,
-        )
-    
     def create_device(self, params: dict):
         device_url = f"{self.URL}/api/device{?accessToken,entityGroupId}"
 
