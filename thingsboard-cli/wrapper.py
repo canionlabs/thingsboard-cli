@@ -1,4 +1,5 @@
 import requests
+import asyncio
 
 from .exceptions import Exception;
 
@@ -22,10 +23,10 @@ class ThingsBoardAuth:
     def _update_headers(self, new_header: dict):
         self.session.headers.update(new_header)
 
-    def login(self):
+    async def login(self):
         auth_url = f"{self.URL}/api/auth/login"
 
-        response = self.session.post(
+        response = await self.session.post(
             auth_url, 
             json={
             "username": self.USERNAME,
@@ -37,46 +38,56 @@ class ThingsBoardAuth:
 
         auth_data = response.json()
 
-        self._update_headers({
+        await self._update_headers({
             "X-Authorization": f"Bearer {auth_data['token']}"
         })
 
-    def create_group(self, params: dict):
+    async def create_group(self, params: dict):
         group_url = f"{self.URL}/api/entityGroup"
 
-        response = self.session.post(
+        response = await self.session.post(
             group_url,
             params,
         )
+
+        return response
     
-    def create_costumer(self, params: dict):
+    async def create_customer(self, params: dict):
         customer_url = f"{self.URL}/api/customer{?entityGroupId}"
 
-        response = self.session.post(
+        response = await self.session.post(
             customer_url,
             params,
         )
+
+        return response
     
-    def create_user_of_costumer(self, params: dict):
+    async def create_user_of_customer(self, params: dict):
         user_costumer_url = f"{self.URL}/api/user{?sendActivationMail,entityGroupId}"
 
-        response = self.session.post(
+        response = await self.session.post(
             user_costumer_url,
             params,
         )
+
+        return response
     
-    def create_device(self, params: dict):
+    async def create_device(self, params: dict):
         device_url = f"{self.URL}/api/device{?accessToken,entityGroupId}"
 
-        response = self.session.post(
+        response = await self.session.post(
             device_url,
             params,
         )
 
-    def create_dashboard(self, params: dict):
+        return response
+
+    async def create_dashboard(self, params: dict):
         dashboard_url = f"{self.URL}/api/dashboard{?entityGroupId}"
 
-        response = self.session.post(
+        response = await self.session.post(
             dashboard_url,
             params,
         )
+
+        return response

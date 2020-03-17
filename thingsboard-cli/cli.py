@@ -86,32 +86,6 @@
 #   }
 # }
 
-# 4 - dar permissão para esse usuario -> /api/permissions/allowedPermissions
-# params: {
-#   "allowedForGroupOwnerOnlyGroupOperations": [
-#     "ALL"
-#   ],
-#   "allowedForGroupOwnerOnlyOperations": [
-#     "ALL"
-#   ],
-#   "allowedForGroupRoleOperations": [
-#     "ALL"
-#   ],
-#   "allowedResources": [
-#     "ALL"
-#   ],
-#   "operationsByResource": {},
-#   "userOwnerId": {
-#     "entityType": "TENANT",
-#     "id": "string"
-#   },
-#   "userPermissions": {
-#     "genericPermissions": {},
-#     "groupPermissions": {},
-#     "readGroupPermissions": {}
-#   }
-# }
-
 # 5 - criar o device -> /api/device{?accessToken,entityGroupId}
 # params: {
 #   "additionalInfo": "string",
